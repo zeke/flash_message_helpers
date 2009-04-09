@@ -6,6 +6,8 @@ h1. Installation
 
 @script/plugin install git@github.com:zeke/flash_message_helpers.git@
 
+*Be sure to set @config.time_zone@ to your time zone in @environment.rb@, or the helpers will not work correctly!*
+
 h2. Usage (Controllers)
 
 Use the following in the @create@ and @update@ methods of your controllers:
