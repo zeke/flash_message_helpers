@@ -1,0 +1,35 @@
+h1. Flash Message Helpers
+
+This Rails plugin provides helpers for generating and displaying flash messages.
+
+h1. Installation
+
+@script/plugin install git@github.com:zeke/flash_message_helpers.git@
+
+h2. Usage (Controllers)
+
+Use the following in the @create@ and @update@ methods of your controllers:
+
+<code>flash_changes(@sandwich)</code>
+
+If @sandwich was just created, you'll get a message like this:
+
+_Sandwich *The Submarine* was successfully created._
+
+If is was just updated, you get:
+
+_Sandwich *The Submarine* was successfully updated._
+
+This method assumes that your object has a @name@ or @title@ attribute. If it doesn't, no name will be displayed in the flash message. To pass in a custom name attribute, do the following:
+
+<code>flash_changes(@sandwich, @sandwich.special_name)</code>
+
+h2. Usage (Views)
+
+Put this is your application view:
+
+@<%= render_flash_messages %>@
+
+h2. TODO
+
+* Add a method for creating flash messages for deleted objects
