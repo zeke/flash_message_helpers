@@ -3,12 +3,22 @@ module FlashMessageHelpers
   
   module ControllerHelpers
 
-    def flash_changes(obj, name=nil)
-      name = obj.try(:name) if name.blank?
-      name = obj.try(:title) if name.blank?
+    def flash_changes(obj, options={})
+
+      # If the object has any of these attributes, they'll be used as the name..
+      name_attribute = %w(name title permalink id).detect { |a| !obj.try(a.to_sym).nil? }
+      name = options[:name] || obj[name_attribute.to_sym]
       name = "<b>#{name}</b>" unless name.blank?
-      # Be sure to set config.time_zone in environment.rb, or the following will not work!
-      verb = (obj.created_at.to_i < 5.seconds.ago.to_i) ? "updated" : "created"
+
+      # Determine verb from params 
+      verb = case params[:action]
+      when "create" then "created"
+      when "update" then "updated"
+      when "destroy" then "deleted"
+      else
+        "somethinged"
+      end
+      
       flash[:notice] = "#{obj.class.to_s} #{name} was successfully #{verb}."
     end
     
