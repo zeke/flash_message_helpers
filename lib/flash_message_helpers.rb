@@ -6,7 +6,9 @@ module FlashMessageHelpers
     def flash_changes(obj, options={})
 
       # If the object has any of these attributes, they'll be used as the name..
-      name_attribute = %w(name title permalink id).detect { |a| !obj.try(a.to_sym).nil? }
+      name_attribute = %w(name title permalink id).detect do |a|
+        obj.respond_to?(a.to_sym) && !obj.send(a.to_sym).nil?
+      end
       name = options[:name] || obj[name_attribute.to_sym]
       name = "<b>#{name}</b>" unless name.blank?
 
