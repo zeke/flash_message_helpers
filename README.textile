@@ -36,4 +36,5 @@ Put this in @application.html.erb@:
 
 h2. TODO
 
-* Add a method for creating flash messages for deleted objects
+* Add an option to linkify the object in the flash message, accounting for the possibility of nest routes.
+* Humanize model name in flash_changes method, so things like BigBadModel end up as 'Big Bad Model'
