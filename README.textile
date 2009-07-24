@@ -4,7 +4,7 @@ This Rails plugin provides helpers for generating and displaying flash messages.
 
 h1. Installation
 
-@script/plugin install git@github.com:zeke/flash_message_helpers.git@
+<code>script/plugin install git@github.com:zeke/flash_message_helpers.git<code>
 
 h2. Usage (Controllers)
 
