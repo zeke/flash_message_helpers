@@ -18,7 +18,7 @@ module FlashMessageHelpers
       when "update" then "updated"
       when "destroy" then "deleted"
       else
-        "somethinged"ak
+        "somethinged"
       end
       
       flash[:notice] = "#{obj.class.to_s} #{name} was successfully #{verb}."
@@ -46,4 +46,5 @@ module FlashMessageHelpers
     end
     
   end
+  
 end
