@@ -18,7 +18,7 @@ module FlashMessageHelpers
       when "update" then "updated"
       when "destroy" then "deleted"
       else
-        "somethinged"
+        "somethinged"ak
       end
       
       flash[:notice] = "#{obj.class.to_s} #{name} was successfully #{verb}."
@@ -28,20 +28,21 @@ module FlashMessageHelpers
 
   module ViewHelpers
 
-    def render_flash_message(css_class, message = "")
+    def render_flash_message(css_class, message="")
       content_tag(:p, message, :class => "#{css_class}") unless message.nil? || message.blank?
     end
   
-    def render_flash_messages(div_id = "flash_messages", div_class = "")
-      div_content = ''
-      FLASH_MESSAGE_TYPES.each do |key|
-        div_content << render_flash_message( key.to_s, flash[key] ) unless flash[key].blank?
-      end
-      content_tag( 'div', div_content, :id => div_id, :class => div_class ) unless div_content.blank?
+    def render_flash_messages(div_id="flash_messages", div_class="")
+      return unless flash_message_set?
+      div_content = FLASH_MESSAGE_TYPES.map do |key|
+        next if flash[key].blank?
+        render_flash_message(key.to_s, flash[key])
+      end.compact.join(" ").html_safe
+      content_tag(:div, div_content, :id => div_id, :class => div_class)
     end
     
     def flash_message_set?
-      FLASH_MESSAGE_TYPES.any? {|key| !flash[key].blank? }
+      FLASH_MESSAGE_TYPES.any? {|key| flash[key].present? }
     end
     
   end
