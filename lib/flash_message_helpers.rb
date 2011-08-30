@@ -1,4 +1,5 @@
 module FlashMessageHelpers
+
   FLASH_MESSAGE_TYPES = [ :error, :notice, :warning, :message, :alert ]
   
   module ControllerHelpers
