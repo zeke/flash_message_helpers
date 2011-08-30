@@ -7,7 +7,7 @@ Installation
 ------------
 
 ```bash
-script/plugin install https://github.com/zeke/flash_message_helpers.git
+rails plugin install https://github.com/zeke/flash_message_helpers.git
 ```
 
 Usage (Controllers)
