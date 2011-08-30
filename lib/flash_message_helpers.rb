@@ -30,7 +30,7 @@ module FlashMessageHelpers
   module ViewHelpers
 
     def render_flash_message(css_class, message="")
-      content_tag(:p, message, :class => "#{css_class}") unless message.nil? || message.blank?
+      content_tag(:p, message.html_safe, :class => "#{css_class}") unless message.nil? || message.blank?
     end
   
     def render_flash_messages(div_id="flash_messages", div_class="")
